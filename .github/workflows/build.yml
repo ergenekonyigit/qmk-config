@@ -1,0 +1,48 @@
+on: [push, pull_request, workflow_dispatch]
+
+name: Build
+
+jobs:
+  reviung41:
+    runs-on: ubuntu-latest
+    name: reviung41
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Cache qmk toolchain
+        uses: actions/cache@v2
+        env:
+          cache-name: qmk-toolchain
+        with:
+          path: |
+            /home/runner/.cache/pip
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies for qmk build
+        uses: mstksg/get-package@v1
+        with:
+          apt-get: git python3-pip dfu-util dfu-programmer avrdude
+      - name: Install qmk using pip
+        working-directory: ./qmk_firmware
+        run: |
+          python3 -m pip install --user qmk
+          qmk setup --yes --home .
+      - name: Prepare qmk_firmware folder
+        working-directory: ./qmk_firmware
+        run: |
+          mkdir -p keyboards/reviung41/keymaps
+          ln -s $(pwd)/../reviung41 keyboards/reviung41/keymaps/supuritto
+      - name: Build reviung41 firmware
+        working-directory: ./qmk_firmware
+        run: qmk compile -kb reviung41 -km supuritto
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: reviung41
+          path: qmk_firmware/reviung41_supuritto.hex

@@ -36,8 +36,8 @@ jobs:
       - name: Prepare qmk_firmware folder
         working-directory: ./qmk_firmware
         run: |
-          mkdir -p keyboards/reviung41/keymaps
-          ln -s $(pwd)/../reviung41 keyboards/reviung41/keymaps/supuritto
+          mkdir -p keyboards/reviung/reviung41/keymaps
+          ln -s $(pwd)/../reviung41 keyboards/reviung/reviung41/keymaps/supuritto
       - name: Build reviung41 firmware
         working-directory: ./qmk_firmware
         run: qmk compile -kb reviung41 -km supuritto

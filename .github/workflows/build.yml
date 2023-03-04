@@ -9,11 +9,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Cache qmk toolchain
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: qmk-toolchain
         with:
@@ -42,7 +42,7 @@ jobs:
         working-directory: ./qmk_firmware
         run: qmk compile -kb reviung41 -km supuritto
       - name: Archive
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: reviung41
-          path: qmk_firmware/reviung41_supuritto.hex
+          path: qmk_firmware/.build/reviung_reviung41_supuritto.hex

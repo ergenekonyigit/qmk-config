@@ -37,12 +37,56 @@ jobs:
         working-directory: ./qmk_firmware
         run: |
           mkdir -p keyboards/reviung/reviung41/keymaps
-          ln -s $(pwd)/../reviung41 keyboards/reviung/reviung41/keymaps/supuritto
+          ln -s $(pwd)/../reviung41 keyboards/reviung/reviung41/keymaps/ergenekonyigit
       - name: Build reviung41 firmware
         working-directory: ./qmk_firmware
-        run: qmk compile -kb reviung41 -km supuritto
+        run: qmk compile -kb reviung41 -km ergenekonyigit
       - name: Archive
         uses: actions/upload-artifact@v3
         with:
           name: reviung41
-          path: qmk_firmware/.build/reviung_reviung41_supuritto.hex
+          path: qmk_firmware/.build/reviung_reviung41_ergenekonyigit.hex
+
+  corne:
+    runs-on: ubuntu-latest
+    name: corne
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Cache qmk toolchain
+        uses: actions/cache@v3
+        env:
+          cache-name: qmk-toolchain
+        with:
+          path: |
+            /home/runner/.cache/pip
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies for qmk build
+        run: |
+          sudo apt-get update
+          sudo apt-get install git python3-pip dfu-util dfu-programmer avrdude
+      - name: Install qmk using pip
+        working-directory: ./qmk_firmware
+        run: |
+          python3 -m pip install --user qmk
+          qmk setup --yes --home .
+      - name: Prepare qmk_firmware folder
+        working-directory: ./qmk_firmware
+        run: |
+          mkdir -p keyboards/crkbd/keymaps
+          ln -s $(pwd)/../corne keyboards/crkbd/keymaps/ergenekonyigit
+      - name: Build corne firmware
+        working-directory: ./qmk_firmware
+        run: qmk compile -kb crkbd -km ergenekonyigit
+      - name: Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: corne
+          path: qmk_firmware/.build/crkbd_ergenekonyigit.hex

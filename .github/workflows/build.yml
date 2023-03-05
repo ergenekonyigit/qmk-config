@@ -89,4 +89,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: corne
-          path: qmk_firmware/.build/crkbd_ergenekonyigit.hex
+          path: qmk_firmware/.build/crkbd_rev1_ergenekonyigit.hex

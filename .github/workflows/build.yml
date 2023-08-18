@@ -134,3 +134,47 @@ jobs:
         with:
           name: planck
           path: qmk_firmware/.build/planck_rev7_ergenekonyigit.hex
+
+  gherkin:
+    runs-on: ubuntu-latest
+    name: gherkin
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Cache qmk toolchain
+        uses: actions/cache@v3
+        env:
+          cache-name: qmk-toolchain
+        with:
+          path: |
+            /home/runner/.cache/pip
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies for qmk build
+        run: |
+          sudo apt-get update
+          sudo apt-get install git python3-pip dfu-util dfu-programmer avrdude
+      - name: Install qmk using pip
+        working-directory: ./qmk_firmware
+        run: |
+          python3 -m pip install --user qmk
+          qmk setup --yes --home .
+      - name: Prepare qmk_firmware folder
+        working-directory: ./qmk_firmware
+        run: |
+          mkdir -p keyboards/40percentclub/gherkin/keymaps
+          ln -s $(pwd)/../gherkin keyboards/40percentclub/gherkin/keymaps/ergenekonyigit
+      - name: Build gherkin firmware
+        working-directory: ./qmk_firmware
+        run: qmk compile -kb gherkin -km ergenekonyigit
+      - name: Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: gherkin
+          path: qmk_firmware/.build/40percentclub_gherkin_ergenekonyigit.hex

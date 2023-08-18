@@ -11,7 +11,7 @@ This repo contains my personal QMK configs for various keyboards.
 | Skywatch  | Not Started |
 | Cantor    | Not Started |
 | Planck    | Available   |
-| Gherkin   | Not Started |
+| Gherkin   | Available   |
 
 ### Corne Layout
 

@@ -13,27 +13,27 @@ This repo contains my personal QMK configs for various keyboards.
 | Planck    | Available   |
 | Gherkin   | Available   |
 
-### Skywatch Layout
+### Skywatch
 
 ![skywatch](./images/skywatch.jpg)
 
-### Reviung41 Layout
+### Reviung41
 
 ![reviung41](./images/reviung41.jpg)
 
-### Cantor Layout
+### Cantor
 
 ![cantor](./images/cantor.jpg)
 
-### Corne Layout
+### Corne
 
 ![corne](./images/corne.jpg)
 
-### Planck Layout
+### Planck
 
 ![planck](./images/planck.jpg)
 
-### Gherkin Layout
+### Gherkin
 
 ![gherkin](./images/gherkin.jpg)
 

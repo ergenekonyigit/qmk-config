@@ -90,3 +90,47 @@ jobs:
         with:
           name: corne
           path: qmk_firmware/.build/crkbd_rev1_ergenekonyigit.hex
+
+  planck:
+    runs-on: ubuntu-latest
+    name: planck
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Cache qmk toolchain
+        uses: actions/cache@v3
+        env:
+          cache-name: qmk-toolchain
+        with:
+          path: |
+            /home/runner/.cache/pip
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies for qmk build
+        run: |
+          sudo apt-get update
+          sudo apt-get install git python3-pip dfu-util dfu-programmer avrdude
+      - name: Install qmk using pip
+        working-directory: ./qmk_firmware
+        run: |
+          python3 -m pip install --user qmk
+          qmk setup --yes --home .
+      - name: Prepare qmk_firmware folder
+        working-directory: ./qmk_firmware
+        run: |
+          mkdir -p keyboards/planck/keymaps
+          ln -s $(pwd)/../planck keyboards/planck/keymaps/ergenekonyigit
+      - name: Build planck firmware
+        working-directory: ./qmk_firmware
+        run: qmk compile -kb planck -km ergenekonyigit
+      - name: Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: planck
+          path: qmk_firmware/.build/planck_ergenekonyigit.hex

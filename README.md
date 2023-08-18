@@ -1,5 +1,18 @@
 ## QMK Configs for various keyboards
 
+This repo contains my personal QMK configs for various keyboards.
+
+### Status of the keyboards
+
+| Keyboard  | Status      |
+| --------- | ----------- |
+| Corne     | Available   |
+| Reviung41 | Available   |
+| Skywatch  | Not Started |
+| Cantor    | Not Started |
+| Planck    | Available   |
+| Gherkin   | Not Started |
+
 ### Corne Layout
 
 ![corne](https://user-images.githubusercontent.com/7110136/222935288-9dd6f1b1-f88d-4020-8a20-df04b280c93f.jpeg)

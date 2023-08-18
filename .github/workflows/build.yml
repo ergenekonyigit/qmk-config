@@ -168,16 +168,16 @@ jobs:
       - name: Prepare qmk_firmware folder
         working-directory: ./qmk_firmware
         run: |
-          mkdir -p keyboards/planck/keymaps
-          ln -s $(pwd)/../planck keyboards/planck/keymaps/ergenekonyigit
+          mkdir -p keyboards/handwired/planck/keymaps
+          ln -s $(pwd)/../planck keyboards/handwired/planck/keymaps/ergenekonyigit
       - name: Build planck firmware
         working-directory: ./qmk_firmware
-        run: qmk compile -kb planck/rev7 -km ergenekonyigit
+        run: qmk compile -kb handwired/planck -km ergenekonyigit
       - name: Archive
         uses: actions/upload-artifact@v3
         with:
           name: planck
-          path: qmk_firmware/.build/planck_rev7_ergenekonyigit.hex
+          path: qmk_firmware/.build/handwired_planck_ergenekonyigit.hex
 
   gherkin:
     runs-on: ubuntu-latest

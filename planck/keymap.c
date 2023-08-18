@@ -28,7 +28,7 @@ enum glosso_layers {
 };
 
 // Screen Lock shortcut
-#define LOCKOSX LCTL(LSFT(KC_POWER))
+#define LOCKOSX LCTL(LSFT(KC_PWR))
 // Emoji popup
 #define EMOJIPOPUP LGUI(LCTL(KC_SPC))
 // Switch input source
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
  * |  esc  |   a   |   s   |   d   |   f   |   g   |   h   |   j   |   k   |   l   |   ;   |   "   |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
- * | shift |   z   |   x   |   c   |   v   |   b   |   n   |   m   |   ,   |   .   |   /   | shift |
+ * | shift |   z   |   x   |   c   |   v   |   b   |   n   |   m   |   ,   |   .   |   /   | enter |
  * |-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------|
  * |  rgb  | cntrl |  alt  |  cmd  | lower | space | space | raise |  cmd  |  alt  | cntrl | emoji |
  * `-----------------------------------------------------------------------------------------------'
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_ortho_4x12(
     KC_TAB,          KC_Q,    KC_W,    KC_E,    KC_R,       KC_T,               KC_Y,               KC_U,       KC_I,    KC_O,    KC_P,    KC_BSPC,
     CTL_T(KC_ESC),   KC_A,    KC_S,    KC_D,    KC_F,       KC_G,               KC_H,               KC_J,       KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    LSFT_T(KC_CAPS), KC_Z,    KC_X,    KC_C,    KC_V,       KC_B,               KC_N,               KC_M,       KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,
+    LSFT_T(KC_CAPS), KC_Z,    KC_X,    KC_C,    KC_V,       KC_B,               KC_N,               KC_M,       KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
     MO(_RGB),        KC_LCTL, KC_LALT, KC_LGUI, MO(_LOWER), LT(_SPACE, KC_SPC), LT(_SPACE, KC_SPC), MO(_RAISE), KC_RGUI, KC_RALT, KC_RCTL, EMOJI
 ),
 

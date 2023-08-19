@@ -169,10 +169,10 @@ jobs:
         working-directory: ./qmk_firmware
         run: |
           mkdir -p keyboards/handwired/glosso/keymaps
-          ln -s $(pwd)/../planck keyboards/handwired/glosso/keymaps/ergenekonyigit
+          ln -s $(pwd)/../planck keyboards/handwired/glosso
       - name: Build planck firmware
         working-directory: ./qmk_firmware
-        run: qmk compile -kb handwired/glosso -km ergenekonyigit
+        run: qmk compile -kb handwired/glosso -km default
       - name: Archive
         uses: actions/upload-artifact@v3
         with:

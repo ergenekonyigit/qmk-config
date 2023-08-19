@@ -10,7 +10,7 @@ This repo contains my personal QMK configs for various keyboards.
 | Reviung41 | Available   |
 | Cantor    | Available   |
 | Corne     | Available   |
-| Planck    | Available   |
+| Planck    | Not Working |
 | Gherkin   | Available   |
 
 ### Skywatch

@@ -168,16 +168,16 @@ jobs:
       - name: Prepare qmk_firmware folder
         working-directory: ./qmk_firmware
         run: |
-          mkdir -p keyboards/handwired/glosso
-          ln -s $(pwd)/../planck keyboards/handwired/glosso
+          mkdir -p keyboards/handwired/planck
+          ln -s $(pwd)/../planck keyboards/handwired/planck
       - name: Build planck firmware
         working-directory: ./qmk_firmware
-        run: qmk compile -kb handwired/glosso -km default
+        run: qmk compile -kb handwired/planck -km default
       - name: Archive
         uses: actions/upload-artifact@v3
         with:
           name: planck
-          path: qmk_firmware/.build/handwired_glosso_ergenekonyigit.hex
+          path: qmk_firmware/.build/handwired_planck_ergenekonyigit.hex
 
   gherkin:
     runs-on: ubuntu-latest

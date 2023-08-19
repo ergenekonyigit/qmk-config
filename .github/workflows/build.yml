@@ -172,7 +172,7 @@ jobs:
           ln -s $(pwd)/../planck keyboards/handwired/glosso/keymaps/ergenekonyigit
       - name: Build planck firmware
         working-directory: ./qmk_firmware
-        run: qmk compile -kb glosso -km ergenekonyigit
+        run: qmk compile -kb handwired/glosso -km ergenekonyigit
       - name: Archive
         uses: actions/upload-artifact@v3
         with:

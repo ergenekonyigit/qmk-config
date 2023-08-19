@@ -168,7 +168,7 @@ jobs:
       - name: Prepare qmk_firmware folder
         working-directory: ./qmk_firmware
         run: |
-          mkdir -p keyboards/handwired/glosso/keymaps
+          mkdir -p keyboards/handwired/glosso
           ln -s $(pwd)/../planck keyboards/handwired/glosso
       - name: Build planck firmware
         working-directory: ./qmk_firmware
